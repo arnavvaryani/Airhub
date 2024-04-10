@@ -1,5 +1,9 @@
 # Air Hub: Database Management System for Airplane Conveyance
 
+<p align="center">
+<img src="https://assets-global.website-files.com/63d7da5ae905a869da196fa7/65047db4ad8d5e69b132b6f0_AirHub.jpeg" jsaction="VQAsE" class="sFlh5c pT0Scc iPVvYb" style="max-width: 399px; height:300px; margin: 0px; width: 300px;" alt="AirHub" aria-hidden="false">
+</p>
+
 ## Project Overview
 The objective of our project is to develop a comprehensive database management system for an airplane conveyance management system. This centralized database will be designed to efficiently store, organize, manage, and maintain all data associated with the airline's operations. It will encompass crucial information related to flight schedules, passenger details, tickets, aircraft, and crew members.
 
