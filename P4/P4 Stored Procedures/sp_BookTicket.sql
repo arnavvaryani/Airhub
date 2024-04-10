@@ -136,8 +136,10 @@ BEGIN
         SELECT @BookingID = CAST(SCOPE_IDENTITY() AS INT);
 
         -- Logic to apply the discount to the original price based on loyalty 
+        DECLARE @discountpercentage DECIMAL(5, 2);
+        select @discountpercentage = dbo.GetDiscountPercentageByUserID(@UserID);
         update t
-            set t.Price = t.price * (1 - dbo.GetDiscountPercentageByUserID(@UserID) / 100)
+            SET t.Price = CAST(t.Price * (1 - @discountpercentage / 100) AS INT)
             FROM UserAccount ua JOIN LoyaltyProgram lp ON ua.LoyaltyID = lp.LoyaltyID
             JOIN Passenger p ON p.UserID = ua.UserID
             JOIN Ticket t ON t.TicketID = p.TicketID

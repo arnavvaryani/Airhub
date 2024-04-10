@@ -16,7 +16,7 @@ select * from FlightSchedule;
 
 go
 CREATE OR ALTER FUNCTION dbo.GetDiscountPercentageByUserID (@UserID VARCHAR(255))
-RETURNS INT
+RETURNS DECIMAL(5,2)
 AS
 BEGIN
     DECLARE @DiscountPercentage INT;
@@ -31,3 +31,4 @@ BEGIN
 
     RETURN @DiscountPercentage;
 END;
+
