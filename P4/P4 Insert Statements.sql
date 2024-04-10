@@ -8,16 +8,16 @@ INSERT INTO LoyaltyProgram (LoyaltyID, FixedDiscount) VALUES
  
 -- Insert dummy data into UserAccount
 INSERT INTO UserAccount (UserID, LoyaltyID, [Name], Email, [Password]) VALUES
-('U001', 'L001', 'John Doe', 'john.doe@example.com', 'password123'),
-('U002', 'L002', 'Jane Smith', 'jane.smith@example.com', 'password123'),
-('U003', 'L003', 'Jim Bean', 'jim.bean@example.com', 'password123'),
+('U001', 'L001', 'John Doe', 'john.doe@example.com', 'password39493'),
+('U002', 'L002', 'Jane Smith', 'jane.smith@example.com', 'password163'),
+('U003', 'L003', 'Jim Bean', 'jim.bean@example.com', 'password133'),
 ('U004', 'L004', 'Jill Hill', 'jill.hill@example.com', 'password123'),
-('U005', 'L001', 'Jake Lake', 'jake.lake@example.com', 'password123'),
-('U006', 'L002', 'Judy May', 'judy.may@example.com', 'password123'),
-('U007', 'L003', 'Joan Arc', 'joan.arc@example.com', 'password123'),
-('U008', 'L004', 'Jack Pine', 'jack.pine@example.com', 'password123'),
-('U009', 'L002', 'Jess March', 'jess.march@example.com', 'password123'),
-('U010', 'L001', 'Joe April', 'joe.april@example.com', 'password123');
+('U005', 'L001', 'Jake Lake', 'jake.lake@example.com', 'password143'),
+('U006', 'L002', 'Judy May', 'judy.may@example.com', 'password103'),
+('U007', 'L003', 'Joan Arc', 'joan.arc@example.com', 'password193'),
+('U008', 'L004', 'Jack Pine', 'jack.pine@example.com', 'password19233'),
+('U009', 'L002', 'Jess March', 'jess.march@example.com', 'password120403'),
+('U010', 'L001', 'Joe April', 'joe.april@example.com', 'password1404023');
  
  -- Insert dummy data into Airport
 INSERT INTO Airport (AirportID, [Name], Country, [State], City, Capacity) VALUES
@@ -58,35 +58,17 @@ INSERT INTO Flight (FlightID, DepartingAirportID, ArrivingAirportID, AirlineID, 
 ('FT009', 'A009', 'A010', 'AR009', 'Liberty Lines', 200, 150, 'Gate 9', 'Gate 10'),
 ('FT010', 'A010', 'A011', 'AR010', 'Justice Jets', 240, 190, 'Gate 10', 'Gate 11');
 
- INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT001', '1A', 500);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT002', '1B', 750);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT003', '1C', 900);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT004', '1D', 1200);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT005', '1E', 450);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT006', '1F', 600);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT007', '1G', 850);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT008', '1H', 1000);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT009', '1I', 700);
-
-INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) 
-VALUES ('TKT' + CAST(NEXT VALUE FOR Seq_TicketID AS VARCHAR(7)), 'FT010', '1J', 950);
+INSERT INTO Ticket (TicketID, FlightID, SeatNumber, Price) VALUES
+('TKT1000003', 'FT001', 'A1', 200),
+('TKT1000004', 'FT002', 'A2', 220),
+('TKT1000005', 'FT003', 'A3', 250),
+('TKT1000006', 'FT004', 'B1', 230),
+('TKT1000007', 'FT005', 'B2', 210),
+('TKT1000008', 'FT006', 'B3', 240),
+('TKT1000009', 'FT007', 'C1', 260),
+('TKT1000010', 'FT008', 'C2', 220),
+('TKT1000011', 'FT009', 'C3', 250),
+('TKT1000012', 'FT010', 'D1', 240);
 
 -- Insert dummy data into Passenger
 INSERT INTO Passenger (PassengerID, UserID, [Name], TicketID, Email, PassportNumber) VALUES
@@ -113,13 +95,6 @@ INSERT INTO Baggage (BaggageID, PassengerID, [Size], [Status]) VALUES
 ('B018', 'P008', 'Large', 'Checked'),
 ('B019', 'P009', 'Small', 'Carry-On'),
 ('B020', 'P010', 'Medium', 'Checked');
-
--- Continue the insertion for the remaining tables as previously described, making sure the foreign key references are correct.
-
-
- 
--- Insert dummy data into Flight
-
 
 -- Insert dummy data into FlightSchedule
 INSERT INTO FlightSchedule (FlightScheduleID, UserID, FlightID, DepartureTime, ArrivalTime, [Date]) VALUES

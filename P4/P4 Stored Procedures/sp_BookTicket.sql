@@ -1,3 +1,5 @@
+use airhub; 
+
 GO
 CREATE OR ALTER PROCEDURE sp_BookTicket
     @UserID VARCHAR(255),
@@ -132,23 +134,10 @@ BEGIN
             (@PaymentID, @TicketID, @BookingDate, 'Confirmed', @Class);
 
         SELECT @BookingID = CAST(SCOPE_IDENTITY() AS INT);
-        -- Ensure correct data type casting
-
-       
-        DECLARE @DiscountPercentage DECIMAL(5, 2);
-
-        -- Extract the fixed discount percentage from the LoyaltyProgram table
-        SELECT @DiscountPercentage = CAST(REPLACE(FixedDiscount, '%', '') AS DECIMAL(5, 2))
-        FROM LoyaltyProgram
-        WHERE LoyaltyID = (
-        SELECT ua.LoyaltyID
-        FROM UserAccount ua
-        WHERE ua.UserID = @UserID
-        );
 
         -- Logic to apply the discount to the original price based on loyalty 
         update t
-            set t.Price = t.price * (1 - @DiscountPercentage / 100)
+            set t.Price = t.price * (1 - dbo.GetDiscountPercentageByUserID(@UserID) / 100)
             FROM UserAccount ua JOIN LoyaltyProgram lp ON ua.LoyaltyID = lp.LoyaltyID
             JOIN Passenger p ON p.UserID = ua.UserID
             JOIN Ticket t ON t.TicketID = p.TicketID
@@ -159,7 +148,7 @@ BEGIN
                 DECLARE @BaggageID Nvarchar(255);
                 SET @numericPart = CAST(NEXT VALUE FOR Seq_BaggageID AS INT) % 10 + 1; -- Assuming the numeric part starts from 1 and goes up to 10
                 SET @letterPart = CHAR(ASCII('A') + CAST(NEXT VALUE FOR Seq_BaggageID AS INT) % 10);
-                SET @BaggageID = @numericPart + @letterPart
+                SET @BaggageID = @numericPart + @letterPart 
                 INSERT into Baggage(BaggageID, PassengerID, [Size], [Status])
                 VALUES(@BaggageID, @NewPassengerID, @BaggageSize, 'Checked')
             END
@@ -177,3 +166,41 @@ BEGIN
     RETURN;
 END;
 GO
+
+--to test procedure
+DECLARE @UserID VARCHAR(255) = 'U001';
+DECLARE @FlightID VARCHAR(255) = 'FT002';
+DECLARE @Class VARCHAR(255) = 'Economy';
+DECLARE @PassengerName VARCHAR(255) = 'David Bugrara';
+Declare @PassengerEmail VARCHAR(255) = 'davidb1@gmail.com'
+Declare @PassengerPassport Varchar(255) = 'DN09221888';
+DECLARE @SeatNumber VARCHAR(255) = '';
+Declare @BaggageSize NVARCHAR(255) = 'Medium';
+DECLARE @BookingDate DATE = '2024-07-20';
+ 
+-- Declare variables for the output parameters
+DECLARE @BookingID INT;
+DECLARE @TicketID VARCHAR(255);
+DECLARE @Message VARCHAR(255);
+ 
+-- Execute the stored procedure
+EXEC sp_BookTicket
+    @UserID = @UserID,
+    @PassengerName = @PassengerName,
+    @PassengerEmail = @PassengerEmail,
+    @PassengerPassport = @PassengerPassport,
+    @FlightID = @FlightID,
+    @Class = @Class,
+    @SeatNumber = @SeatNumber,
+    @BookingDate = @BookingDate,
+    @BaggageSize = @BaggageSize,
+    @BookingID = @BookingID OUTPUT,
+    @TicketID = @TicketID OUTPUT,
+    @Message = @Message OUTPUT,
+    @PaymentMethod = 'Credit Card'; -- Added PaymentMethod parameter
+ 
+-- Display the output parameters
+SELECT @Message AS OutputMessage, @BookingID AS BookingID, @TicketID AS TicketID;
+
+select * from passenger;
+select * from ticket;

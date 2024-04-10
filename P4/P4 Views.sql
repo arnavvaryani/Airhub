@@ -49,3 +49,7 @@ JOIN Airport a1 ON f.DepartingAirportID = a1.AirportID
 JOIN Airport a2 ON f.ArrivingAirportID = a2.AirportID
 JOIN Payment pm ON b.PaymentID = pm.PaymentID
 JOIN Passenger p on p.ticketid = t.ticketid
+
+select * from vw_BookingDetails;
+select * from vw_AvailableFlights;
+select * from vw_PassengerBaggageDetails;
