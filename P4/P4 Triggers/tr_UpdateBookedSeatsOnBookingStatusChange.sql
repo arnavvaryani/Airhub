@@ -1,3 +1,6 @@
+use airhub;
+
+GO
 CREATE OR ALTER TRIGGER tr_UpdateBookedSeatsOnBookingStatusChange
 ON Booking
 AFTER UPDATE

@@ -1,4 +1,5 @@
 use Airhub; 
+
 GO
 CREATE TRIGGER trg_UpdateBookedSeats
 ON Booking
