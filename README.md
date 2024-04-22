@@ -1,4 +1,4 @@
-# Air Hub: Database Management System for Airplane Conveyance
+# Air Hub: Flight Booking System
 
 <p align="center">
 <img src="https://assets-global.website-files.com/63d7da5ae905a869da196fa7/65047db4ad8d5e69b132b6f0_AirHub.jpeg" jsaction="VQAsE" class="sFlh5c pT0Scc iPVvYb" style="max-width: 399px; height:300px; margin: 0px; width: 300px;" alt="AirHub" aria-hidden="false">
